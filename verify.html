@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提出内容の検証 | NCU IS2026 / 情報システム論</title>
+  <script>
+    if (location.protocol === "http:" && location.hostname !== "localhost") {
+      location.replace(location.href.replace(/^http:/, "https:"));
+    }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: #f5f6f8;
+      color: #1f2933;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .lead {
+      color: #52606d;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #cbd2d9;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #2563eb;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .verdict {
+      display: none;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      padding: 1rem;
+      font-weight: 700;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .verdict.ok {
+      background: #f0fdf4;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+    .verdict.ng {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>提出内容の検証(教員用)</h1>
+    <p class="lead">スクリーンショットに表示されている内容をそのまま転記して「照合する」を押してください。提出時間は表示どおり(例: 2026年8月15日 14:03:22)に入力します。</p>
+
+    <label for="v-id">学籍番号</label>
+    <input type="text" id="v-id" autocomplete="off">
+
+    <label for="v-name">氏名</label>
+    <input type="text" id="v-name" autocomplete="off">
+
+    <label for="v-time">提出時間(表示どおり)</label>
+    <input type="text" id="v-time" autocomplete="off" placeholder="2026年8月15日 14:03:22">
+
+    <label for="v-code">確認コード</label>
+    <input type="text" id="v-code" autocomplete="off" placeholder="XXXX-XXXX">
+
+    <button type="button" onclick="verify()">照合する</button>
+
+    <div class="verdict" id="verdict"></div>
+  </div>
+
+  <script src="code.js"></script>
+  <script>
+    async function verify() {
+      var id = document.getElementById("v-id").value;
+      var name = document.getElementById("v-name").value;
+      var timeText = document.getElementById("v-time").value;
+      var code = document.getElementById("v-code").value.trim().toUpperCase();
+      var box = document.getElementById("verdict");
+
+      if (!id.trim() || !name.trim() || !timeText.trim() || !code) {
+        box.className = "verdict ng";
+        box.textContent = "すべての欄を入力してください。";
+        box.style.display = "block";
+        return;
+      }
+
+      var expected = await computeCode("attendance01", id, name, timeText);
+      if (expected === code) {
+        box.className = "verdict ok";
+        box.textContent = "✓ 一致(改ざんは検出されませんでした)";
+      } else {
+        box.className = "verdict ng";
+        box.textContent = "✗ 不一致(内容が書き換えられている可能性があります)";
+      }
+      box.style.display = "block";
+    }
+  </script>
+</body>
+</html>

@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>出席確認① AIの常識クイズ | NCU IS2026 / 情報システム論</title>
+  <script>
+    // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
+    if (location.protocol === "http:" && location.hostname !== "localhost") {
+      location.replace(location.href.replace(/^http:/, "https:"));
+    }
+  </script>
   <style>
     * {
       margin: 0;
@@ -119,6 +125,15 @@
       font-weight: 700;
       white-space: nowrap;
     }
+    .time-note {
+      color: #52606d;
+      font-size: 0.85rem;
+      margin: -0.8rem 0 1.5rem;
+    }
+    button:disabled {
+      background: #9aa5b1;
+      cursor: not-allowed;
+    }
     .notice {
       background: #eff6ff;
       border: 1px solid #bfdbfe;
@@ -174,7 +189,7 @@
         </div>
       </fieldset>
 
-      <button type="button" onclick="submitQuiz()">提出する</button>
+      <button type="button" id="submit-btn" onclick="submitQuiz()">提出する</button>
     </div>
 
     <div id="result">
@@ -183,15 +198,19 @@
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
         <tr><th>氏名</th><td id="result-name"></td></tr>
         <tr><th>提出時間</th><td id="result-time"></td></tr>
+        <tr><th>確認コード</th><td id="result-code"></td></tr>
       </table>
+      <p class="time-note">提出時間はサーバー時刻に基づきます。</p>
       <p class="notice">この画面のスクリーンショットを撮り、Teams の提出欄にアップロードしてください。</p>
     </div>
 
     <a class="back-link" href="index.html">← トップページに戻る</a>
   </div>
 
+  <script src="code.js"></script>
   <script>
     var answers = { q1: "b", q2: "a", q3: "b" };
+    var PAGE_ID = "attendance01";
 
     function getChecked(name) {
       var checked = document.querySelector('input[name="' + name + '"]:checked');
@@ -212,7 +231,13 @@
       }
     }
 
-    function submitQuiz() {
+    function setSubmitting(busy) {
+      var btn = document.getElementById("submit-btn");
+      btn.disabled = busy;
+      btn.textContent = busy ? "提出処理中…" : "提出する";
+    }
+
+    async function submitQuiz() {
       var id = document.getElementById("student-id").value.trim();
       var name = document.getElementById("student-name").value.trim();
 
@@ -230,22 +255,34 @@
         return;
       }
 
-      if (q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3) {
-        var now = new Date();
-        var pad = function (n) { return String(n).padStart(2, "0"); };
-        var timeText = now.getFullYear() + "年" + (now.getMonth() + 1) + "月" + now.getDate() + "日 " +
-          pad(now.getHours()) + ":" + pad(now.getMinutes()) + ":" + pad(now.getSeconds());
-
-        document.getElementById("result-id").textContent = id;
-        document.getElementById("result-name").textContent = name;
-        document.getElementById("result-time").textContent = timeText;
-        document.getElementById("form-page").style.display = "none";
-        document.getElementById("result").style.display = "block";
-        window.scrollTo(0, 0);
-      } else {
+      if (!(q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3)) {
         resetQuiz();
         showError("間違いがあります。再チャレンジしてください。");
+        return;
       }
+
+      if (!window.crypto || !crypto.subtle) {
+        showError("このページは https:// で開く必要があります。URLを確認してください。");
+        return;
+      }
+
+      setSubmitting(true);
+      var timeText = await fetchServerTime();
+      if (!timeText) {
+        setSubmitting(false);
+        showError("時刻サーバーに接続できませんでした。通信環境を確認して、もう一度「提出する」を押してください。");
+        return;
+      }
+
+      var code = await computeCode(PAGE_ID, id, name, timeText);
+
+      document.getElementById("result-id").textContent = id;
+      document.getElementById("result-name").textContent = name;
+      document.getElementById("result-time").textContent = timeText;
+      document.getElementById("result-code").textContent = code;
+      document.getElementById("form-page").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      window.scrollTo(0, 0);
     }
   </script>
 </body>
