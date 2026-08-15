@@ -62,6 +62,19 @@
     .links a:hover {
       background: #eff6ff;
     }
+    .links a.repo-link {
+      display: inline-block;
+      margin-top: 0.4rem;
+      padding: 0;
+      border: none;
+      background: transparent;
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #52606d;
+    }
+    .links a.repo-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -88,6 +101,20 @@
       <h2>体験型教材</h2>
       <ul class="links">
         <li><a href="https://kklab.mobi/trolley-problem/">トロッコ問題(倫理的ジレンマゲーム)</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>デモ・データ可視化</h2>
+      <ul class="links">
+        <li>
+          <a href="https://kklab.mobi/min_wage/">最低賃金マップ(2024年度 都道府県別)</a>
+          <a class="repo-link" href="https://github.com/kkawailab/min_wage">GitHub リポジトリ</a>
+        </li>
+        <li>
+          <a href="https://kklab.mobi/GIS_Schools/">愛知県 学校マップ(設置者別の色分け表示)</a>
+          <a class="repo-link" href="https://github.com/kkawailab/GIS_Schools">GitHub リポジトリ</a>
+        </li>
       </ul>
     </section>
   </main>
