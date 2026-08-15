@@ -44,13 +44,15 @@
       font-weight: 700;
       margin-bottom: 0.4rem;
     }
-    input[type="text"] {
+    input[type="text"],
+    select {
       width: 100%;
       padding: 0.6rem 0.8rem;
       font-size: 1rem;
       border: 1px solid #cbd2d9;
       border-radius: 8px;
       margin-bottom: 1rem;
+      background: #ffffff;
     }
     button {
       display: block;
@@ -93,6 +95,21 @@
     <h1>提出内容の検証(教員用)</h1>
     <p class="lead">スクリーンショットに表示されている内容をそのまま転記して「照合する」を押してください。提出時間は表示どおり(例: 2026年8月15日 14:03:22)に入力します。</p>
 
+    <label for="v-page">対象ページ</label>
+    <select id="v-page">
+      <option value="attendance01">出席確認① AIの常識クイズ</option>
+      <option value="attendance02">出席確認② 機械学習の基礎クイズ</option>
+      <option value="attendance03">出席確認③ ニューラルネットワークの基礎クイズ</option>
+      <option value="attendance04">出席確認④ 生成AIとLLMのクイズ</option>
+      <option value="attendance05">出席確認⑤ プロンプトの書き方クイズ</option>
+      <option value="attendance06">出席確認⑥ AIの得意・不得意クイズ</option>
+      <option value="attendance07">出席確認⑦ データとAIのクイズ</option>
+      <option value="attendance08">出席確認⑧ AIの歴史クイズ</option>
+      <option value="attendance09">出席確認⑨ AIと倫理・ルールのクイズ</option>
+      <option value="attendance10">出席確認⑩ 身の回りのAIクイズ</option>
+      <option value="attendance11">出席確認⑪ AIと社会・仕事のクイズ</option>
+    </select>
+
     <label for="v-id">学籍番号</label>
     <input type="text" id="v-id" autocomplete="off">
 
@@ -113,6 +130,7 @@
   <script src="code.js"></script>
   <script>
     async function verify() {
+      var pageId = document.getElementById("v-page").value;
       var id = document.getElementById("v-id").value;
       var name = document.getElementById("v-name").value;
       var timeText = document.getElementById("v-time").value;
@@ -126,7 +144,7 @@
         return;
       }
 
-      var expected = await computeCode("attendance01", id, name, timeText);
+      var expected = await computeCode(pageId, id, name, timeText);
       if (expected === code) {
         box.className = "verdict ok";
         box.textContent = "✓ 一致(改ざんは検出されませんでした)";
