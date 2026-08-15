@@ -10,6 +10,7 @@
 
 ## 更新履歴
 
+- 2026-08-15: 「オンライン実習環境」にオンライン開発環境(サンプルファイル付き、kklab-jupyterlite)へのリンクを追加
 - 2026-08-15: トップページに「サンプルコード・チュートリアル」セクションを追加(JavaScript: ml5.js / D3.js / Leaflet.js / Chart.js、Python: サンプル集 / Matplotlib / Leafmap / statsmodels の計8リンク)
 - 2026-08-15: JupyterLab 実習環境のリンクの下に GitHub リポジトリ(kklab-jupyterlite)へのリンクを追加
 - 2026-08-15: トップページの出席確認の下に「オンライン実習環境」セクションを追加し、JupyterLab 実習環境(JupyterLite)へのリンクを掲載
