@@ -15,162 +15,258 @@
       background: #f5f6f8;
       color: #1f2933;
       min-height: 100vh;
-      display: flex;
     }
     main {
-      margin: auto;
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 3.5rem;
+    }
+    .site-head {
       text-align: center;
-      padding: 2rem;
-      width: 100%;
+      margin-bottom: 2rem;
+    }
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #64748b;
     }
     h1 {
-      font-size: clamp(1.8rem, 5vw, 3rem);
+      font-size: clamp(1.6rem, 4.5vw, 2.4rem);
       font-weight: 700;
       letter-spacing: 0.02em;
+      margin-top: 0.4rem;
     }
-    section {
-      margin-top: 2.5rem;
+    .tagline {
+      margin-top: 0.6rem;
+      color: #52606d;
+      font-size: 0.95rem;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 14px;
+      border-top: 4px solid var(--accent);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 1.5rem 1.6rem;
+      margin-top: 1.4rem;
+    }
+    .c-blue   { --accent: #2563eb; --tint: #eff6ff; --line: #bfdbfe; }
+    .c-green  { --accent: #059669; --tint: #ecfdf5; --line: #a7f3d0; }
+    .c-violet { --accent: #7c3aed; --tint: #f5f3ff; --line: #ddd6fe; }
+    .c-amber  { --accent: #b45309; --tint: #fffbeb; --line: #fde68a; }
+    .c-slate  { --accent: #475569; --tint: #f1f5f9; --line: #cbd5e1; }
+    .card-head {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      margin-bottom: 1.1rem;
+    }
+    .icon {
+      flex: none;
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      background: var(--tint);
+      border-radius: 10px;
     }
     h2 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 700;
+    }
+    .desc {
+      font-size: 0.82rem;
       color: #52606d;
-      margin-bottom: 1rem;
+      margin-top: 0.15rem;
     }
     h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #7b8794;
-      margin: 1.2rem 0 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #52606d;
+      margin: 1.3rem 0 0.7rem;
+    }
+    h3::before {
+      content: "";
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 2px;
+      background: var(--accent);
     }
     .links {
       list-style: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.8rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.7rem;
     }
-    .links li {
-      width: 100%;
-      max-width: 26rem;
+    @media (min-width: 640px) {
+      .links.cols {
+        grid-template-columns: 1fr 1fr;
+      }
     }
-    .links a {
+    .links a.item {
       display: block;
-      padding: 0.7rem 1.4rem;
-      font-size: 1.05rem;
+      padding: 0.65rem 0.95rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      color: #2563eb;
+      color: var(--accent);
       background: #ffffff;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      text-decoration: none;
+      transition: background 0.15s ease;
+    }
+    .links a.item:hover {
+      background: var(--tint);
+    }
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 9px;
+    }
+    .repo-link {
+      display: inline-block;
+      margin-top: 0.35rem;
+      font-size: 0.78rem;
+      color: #64748b;
       text-decoration: none;
     }
-    .links a:hover {
-      background: #eff6ff;
-    }
-    .links a.repo-link {
-      display: inline-block;
-      margin-top: 0.4rem;
-      padding: 0;
-      border: none;
-      background: transparent;
-      font-size: 0.8rem;
-      font-weight: 400;
-      color: #52606d;
-    }
-    .links a.repo-link:hover {
+    .repo-link:hover {
       text-decoration: underline;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .links a.item {
+        transition: none;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <h1>NCU IS2026 / 情報システム論</h1>
-    <section>
-      <h2>出席確認</h2>
-      <ul class="links">
-        <li><a href="attendance01.html">出席確認① AIの常識クイズ</a></li>
-        <li><a href="attendance02.html">出席確認② 機械学習の基礎クイズ</a></li>
-        <li><a href="attendance03.html">出席確認③ ニューラルネットワークの基礎クイズ</a></li>
-        <li><a href="attendance04.html">出席確認④ 生成AIとLLMのクイズ</a></li>
-        <li><a href="attendance05.html">出席確認⑤ プロンプトの書き方クイズ</a></li>
-        <li><a href="attendance06.html">出席確認⑥ AIの得意・不得意クイズ</a></li>
-        <li><a href="attendance07.html">出席確認⑦ データとAIのクイズ</a></li>
-        <li><a href="attendance08.html">出席確認⑧ AIの歴史クイズ</a></li>
-        <li><a href="attendance09.html">出席確認⑨ AIと倫理・ルールのクイズ</a></li>
-        <li><a href="attendance10.html">出席確認⑩ 身の回りのAIクイズ</a></li>
-        <li><a href="attendance11.html">出席確認⑪ AIと社会・仕事のクイズ</a></li>
+    <header class="site-head">
+      <p class="eyebrow">2026年度 講義サイト</p>
+      <h1>NCU IS2026 / 情報システム論</h1>
+      <p class="tagline">出席確認・実習環境・教材へのリンク集</p>
+    </header>
+
+    <section class="card c-blue">
+      <div class="card-head">
+        <span class="icon" aria-hidden="true">📝</span>
+        <div>
+          <h2>出席確認</h2>
+          <p class="desc">講義で指示された回のクイズに回答し、結果画面のスクリーンショットを Teams に提出してください。</p>
+        </div>
+      </div>
+      <ul class="links cols">
+        <li><a class="item" href="attendance01.html">① AIの常識クイズ</a></li>
+        <li><a class="item" href="attendance02.html">② 機械学習の基礎クイズ</a></li>
+        <li><a class="item" href="attendance03.html">③ ニューラルネットワークの基礎クイズ</a></li>
+        <li><a class="item" href="attendance04.html">④ 生成AIとLLMのクイズ</a></li>
+        <li><a class="item" href="attendance05.html">⑤ プロンプトの書き方クイズ</a></li>
+        <li><a class="item" href="attendance06.html">⑥ AIの得意・不得意クイズ</a></li>
+        <li><a class="item" href="attendance07.html">⑦ データとAIのクイズ</a></li>
+        <li><a class="item" href="attendance08.html">⑧ AIの歴史クイズ</a></li>
+        <li><a class="item" href="attendance09.html">⑨ AIと倫理・ルールのクイズ</a></li>
+        <li><a class="item" href="attendance10.html">⑩ 身の回りのAIクイズ</a></li>
+        <li><a class="item" href="attendance11.html">⑪ AIと社会・仕事のクイズ</a></li>
       </ul>
     </section>
 
-    <section>
-      <h2>オンライン実習環境</h2>
+    <section class="card c-green">
+      <div class="card-head">
+        <span class="icon" aria-hidden="true">💻</span>
+        <div>
+          <h2>オンライン実習環境</h2>
+          <p class="desc">ブラウザだけで使える Python / Jupyter 環境です。インストールは不要です。</p>
+        </div>
+      </div>
       <ul class="links">
         <li>
-          <a href="https://kklab.mobi/jupyterlab_kklab/">JupyterLab 実習環境(ブラウザで動作・インストール不要)</a>
+          <a class="item" href="https://kklab.mobi/jupyterlab_kklab/">JupyterLab 実習環境(ブラウザで動作・インストール不要)</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-jupyterlite">GitHub リポジトリ</a>
         </li>
-        <li><a href="https://kklab.mobi/kklab-jupyterlite/">オンライン開発環境(サンプルファイル付き)</a></li>
+        <li><a class="item" href="https://kklab.mobi/kklab-jupyterlite/">オンライン開発環境(サンプルファイル付き)</a></li>
       </ul>
     </section>
 
-    <section>
-      <h2>体験型教材</h2>
+    <section class="card c-violet">
+      <div class="card-head">
+        <span class="icon" aria-hidden="true">🎮</span>
+        <div>
+          <h2>体験型教材</h2>
+          <p class="desc">操作しながら考える、対話型の教材です。</p>
+        </div>
+      </div>
       <ul class="links">
-        <li><a href="https://kklab.mobi/trolley-problem/">トロッコ問題(倫理的ジレンマゲーム)</a></li>
+        <li><a class="item" href="https://kklab.mobi/trolley-problem/">トロッコ問題(倫理的ジレンマゲーム)</a></li>
       </ul>
     </section>
 
-    <section>
-      <h2>デモ・データ可視化</h2>
+    <section class="card c-amber">
+      <div class="card-head">
+        <span class="icon" aria-hidden="true">🗺️</span>
+        <div>
+          <h2>デモ・データ可視化</h2>
+          <p class="desc">講義で紹介する地図・データ可視化の作例です。</p>
+        </div>
+      </div>
       <ul class="links">
         <li>
-          <a href="https://kklab.mobi/min_wage/">最低賃金マップ(2024年度 都道府県別)</a>
+          <a class="item" href="https://kklab.mobi/min_wage/">最低賃金マップ(2024年度 都道府県別)</a>
           <a class="repo-link" href="https://github.com/kkawailab/min_wage">GitHub リポジトリ</a>
         </li>
         <li>
-          <a href="https://kklab.mobi/GIS_Schools/">愛知県 学校マップ(設置者別の色分け表示)</a>
+          <a class="item" href="https://kklab.mobi/GIS_Schools/">愛知県 学校マップ(設置者別の色分け表示)</a>
           <a class="repo-link" href="https://github.com/kkawailab/GIS_Schools">GitHub リポジトリ</a>
         </li>
         <li>
-          <a href="https://katzkawai.org/kklab-geojson-nagoya/">名古屋市 区割り地図(16区のクリック表示)</a>
+          <a class="item" href="https://katzkawai.org/kklab-geojson-nagoya/">名古屋市 区割り地図(16区のクリック表示)</a>
           <a class="repo-link" href="https://github.com/katzkawai/kklab-geojson-nagoya">GitHub リポジトリ</a>
         </li>
       </ul>
     </section>
 
-    <section>
-      <h2>サンプルコード・チュートリアル</h2>
+    <section class="card c-slate">
+      <div class="card-head">
+        <span class="icon" aria-hidden="true">📚</span>
+        <div>
+          <h2>サンプルコード・チュートリアル</h2>
+          <p class="desc">復習・自習用のコード集です。</p>
+        </div>
+      </div>
 
       <h3>JavaScript ライブラリ</h3>
-      <ul class="links">
+      <ul class="links cols">
         <li>
-          <a href="https://kklab.mobi/kklab-ml5js-samples/">ml5.js サンプル集(ブラウザで機械学習)</a>
+          <a class="item" href="https://kklab.mobi/kklab-ml5js-samples/">ml5.js サンプル集(ブラウザで機械学習)</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-ml5js-samples">GitHub リポジトリ</a>
         </li>
         <li>
-          <a href="https://kklab.mobi/kklab-D3-samples/">D3.js サンプル集(データ可視化)</a>
+          <a class="item" href="https://kklab.mobi/kklab-D3-samples/">D3.js サンプル集(データ可視化)</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-D3-samples">GitHub リポジトリ</a>
         </li>
         <li>
-          <a href="https://kklab.mobi/kklab-leafletJS-samples/">Leaflet.js サンプル集(地図表示)</a>
+          <a class="item" href="https://kklab.mobi/kklab-leafletJS-samples/">Leaflet.js サンプル集(地図表示)</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-leafletJS-samples">GitHub リポジトリ</a>
         </li>
-        <li><a href="https://github.com/kkawailab/kklab-chartsJs-samples">Chart.js サンプル集(グラフ描画・GitHub)</a></li>
+        <li><a class="item" href="https://github.com/kkawailab/kklab-chartsJs-samples">Chart.js サンプル集(グラフ描画・GitHub)</a></li>
       </ul>
 
       <h3>Python</h3>
-      <ul class="links">
+      <ul class="links cols">
         <li>
-          <a href="https://kklab.mobi/kklab-python-examples/">Python サンプル集</a>
+          <a class="item" href="https://kklab.mobi/kklab-python-examples/">Python サンプル集</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-python-examples">GitHub リポジトリ</a>
         </li>
         <li>
-          <a href="https://kklab.mobi/kklab-python-graph-samples/">Matplotlib グラフサンプル集</a>
+          <a class="item" href="https://kklab.mobi/kklab-python-graph-samples/">Matplotlib グラフサンプル集</a>
           <a class="repo-link" href="https://github.com/kkawailab/kklab-python-graph-samples">GitHub リポジトリ</a>
         </li>
-        <li><a href="https://github.com/kkawailab/Python_Leafmap">Leafmap チュートリアル(地理空間データの地図化・GitHub)</a></li>
-        <li><a href="https://github.com/kkawailab/kklab-statsmodels-tutorials">statsmodels チュートリアル(統計分析・GitHub)</a></li>
+        <li><a class="item" href="https://github.com/kkawailab/Python_Leafmap">Leafmap チュートリアル(地理空間データの地図化・GitHub)</a></li>
+        <li><a class="item" href="https://github.com/kkawailab/kklab-statsmodels-tutorials">statsmodels チュートリアル(統計分析・GitHub)</a></li>
       </ul>
     </section>
   </main>
