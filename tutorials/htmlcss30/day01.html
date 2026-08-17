@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 1 Webページのしくみ | プログラミング入門30日 | NCU IS2026 / 情報システム論</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: #f5f6f8;
+      color: #1f2933;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    a { color: #2563eb; }
+    .crumb {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    header, section {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    header {
+      border-top: 4px solid #ea580c;
+    }
+    .phase-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #ea580c;
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .goal {
+      background: #f5f6f8;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+    .goal strong { color: #ea580c; }
+    section p {
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    section p:last-child { margin-bottom: 0; }
+    code {
+      font-family: ui-monospace, "SFMono-Regular", "Consolas", "Menlo", monospace;
+      background: #eef2f7;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      font-size: 0.85em;
+    }
+    pre.code {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+    pre.code code {
+      background: none;
+      padding: 0;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      color: #92400e;
+      font-size: 0.9rem;
+    }
+    .exercise {
+      border-left: 4px solid #ea580c;
+    }
+    .exercise h2 {
+      font-size: 1rem;
+      color: #ea580c;
+      margin-bottom: 0.6rem;
+    }
+    nav.pager {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    nav.pager a { text-decoration: none; font-weight: 700; }
+    nav.pager .spacer { flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="crumb"><a href="../htmlcss30.html">プログラミング入門30日</a> の Day 1</p>
+
+    <header>
+      <span class="phase-label">第1部 HTML</span>
+      <h1>Day 1 Webページのしくみ</h1>
+      <p class="goal"><strong>🎯 今日のゴール</strong> WebページがHTMLというテキストファイルでできていることを理解し、最初のページをブラウザで開く。</p>
+    </header>
+
+    <section>
+      <p>Webページの正体は「HTMLファイル」というただのテキストファイルです。ブラウザ(Chrome など)は、サーバーから受け取ったHTMLを解釈して、見出しや画像のある画面として表示しています。</p>
+      <p>まずはテキストエディタ(メモ帳や VS Code)で次の内容を入力し、<code>hello.html</code> という名前で保存して、そのファイルをブラウザで開いてみましょう。</p>
+      <pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;はじめてのページ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;p&gt;こんにちは、HTML!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p class="note">💡 ファイルは必ず文字コード「UTF-8」で保存します。日本語が文字化けしたときは、保存時の文字コードを確認しましょう。</p>
+    </section>
+
+    <section class="exercise">
+      <h2>✍️ 今日の練習</h2>
+      <p>「こんにちは、HTML!」を自分の好きなあいさつに書き換えて保存し、ブラウザを再読み込みして表示が変わることを確認しましょう。</p>
+    </section>
+
+    <nav class="pager">
+      <span></span>
+      <span class="spacer"></span>
+      <a href="../htmlcss30.html">目次</a>
+      <span class="spacer"></span>
+      <a href="day02.html">Day 2 HTMLの基本構造 →</a>
+    </nav>
+  </div>
+</body>
+</html>

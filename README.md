@@ -10,6 +10,7 @@
 
 ## 更新履歴
 
+- 2026-08-17: 30日カリキュラムの各日の学習ページ(解説・サンプルコード・今日の練習、tutorials/htmlcss30/day01〜30.html)を作成し、htmlcss30.html を各日へのリンク付き目次ページに刷新。内容が HTML・CSS・JavaScript・Python に及ぶため、表示タイトルを「HTML/CSS入門30日」から「プログラミング入門30日」に変更(ファイル名・URLは htmlcss30.html のまま)
 - 2026-08-17: ディレクトリを整理(出席確認ページを attendance/ に、HTML/CSS入門30日を tutorials/ に移動。各ページの公開URLが変更: 例 attendance01.html → attendance/attendance01.html)
 - 2026-08-17: 「HTML/CSS入門30日」ページ(htmlcss30.html、HTML → HTML/CSS → JavaScript → Python の4部構成カリキュラム)を追加し、トップページのサンプルコード・チュートリアルに「HTML / CSS」の項目としてリンクを掲載
 - 2026-08-17: 出席確認を30日分(①〜㉚、attendance01〜30.html)に再構成。AIに関するクイズを各回1題・計30題とし、不正解時には解説を表示するように変更。verify.html の対象ページ選択とトップページのリンクも30回分に更新

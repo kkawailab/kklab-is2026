@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Day 20 繰り返し | プログラミング入門30日 | NCU IS2026 / 情報システム論</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+      background: #f5f6f8;
+      color: #1f2933;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    a { color: #2563eb; }
+    .crumb {
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+    header, section {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+    }
+    header {
+      border-top: 4px solid #ca8a04;
+    }
+    .phase-label {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #ca8a04;
+      border-radius: 999px;
+      padding: 0.2rem 0.8rem;
+      margin-bottom: 0.6rem;
+    }
+    h1 {
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+    .goal {
+      background: #f5f6f8;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      font-size: 0.9rem;
+    }
+    .goal strong { color: #ca8a04; }
+    section p {
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+    section p:last-child { margin-bottom: 0; }
+    code {
+      font-family: ui-monospace, "SFMono-Regular", "Consolas", "Menlo", monospace;
+      background: #eef2f7;
+      border-radius: 4px;
+      padding: 0.1em 0.4em;
+      font-size: 0.85em;
+    }
+    pre.code {
+      background: #1e293b;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+    }
+    pre.code code {
+      background: none;
+      padding: 0;
+      color: #e2e8f0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .note {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      color: #92400e;
+      font-size: 0.9rem;
+    }
+    .exercise {
+      border-left: 4px solid #ca8a04;
+    }
+    .exercise h2 {
+      font-size: 1rem;
+      color: #ca8a04;
+      margin-bottom: 0.6rem;
+    }
+    nav.pager {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    nav.pager a { text-decoration: none; font-weight: 700; }
+    nav.pager .spacer { flex: 1; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p class="crumb"><a href="../htmlcss30.html">プログラミング入門30日</a> の Day 20</p>
+
+    <header>
+      <span class="phase-label">第3部 JavaScript</span>
+      <h1>Day 20 繰り返し</h1>
+      <p class="goal"><strong>🎯 今日のゴール</strong> for ループで同じ処理を繰り返せる。</p>
+    </header>
+
+    <section>
+      <pre class="code"><code>for (let i = 1; i &lt;= 5; i++) {
+  console.log(i + &quot;回目のこんにちは&quot;);
+}</code></pre>
+      <p><code>for (開始; 続ける条件; 更新)</code> の3点セットで動きます。この例は「i を1から始めて、5以下の間、1ずつ増やしながら繰り返す」という意味です。<code>i++</code> は「i を1増やす」の省略形です。</p>
+    </section>
+
+    <section class="exercise">
+      <h2>✍️ 今日の練習</h2>
+      <p>1から10までの合計を計算するループを書いてみましょう。ヒント: 合計を入れる変数を let sum = 0; のように用意します。</p>
+    </section>
+
+    <nav class="pager">
+      <a href="day19.html">← Day 19 条件分岐</a>
+      <span class="spacer"></span>
+      <a href="../htmlcss30.html">目次</a>
+      <span class="spacer"></span>
+      <a href="day21.html">Day 21 関数 →</a>
+    </nav>
+  </div>
+</body>
+</html>
