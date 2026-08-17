@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day 25 Pythonとは | プログラミング入門30日 | NCU IS2026 / 情報システム論</title>
+  <script>
+    // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
+    if (location.protocol === "http:" && location.hostname !== "localhost") {
+      location.replace(location.href.replace(/^http:/, "https:"));
+    }
+  </script>
   <style>
     * {
       margin: 0;
@@ -99,6 +105,117 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    .quiz h2 {
+      font-size: 1rem;
+      color: #16a34a;
+      margin-bottom: 0.6rem;
+    }
+    .quiz-lead {
+      font-size: 0.9rem;
+      color: #52606d;
+    }
+    .quiz label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #cbd2d9;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .question {
+      background: #f5f6f8;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    .question p {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+    .question .choice {
+      display: block;
+      font-weight: 400;
+      margin-bottom: 0.4rem;
+      cursor: pointer;
+    }
+    .question input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+    .quiz button {
+      display: block;
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      background: #2563eb;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .quiz button:hover {
+      background: #1d4ed8;
+    }
+    .quiz button:disabled {
+      background: #9aa5b1;
+      cursor: not-allowed;
+    }
+    .error {
+      display: none;
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    #result {
+      display: none;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 2rem;
+    }
+    #result h2 {
+      font-size: 1.4rem;
+      color: #15803d;
+      margin-bottom: 1.2rem;
+    }
+    .result-table {
+      margin: 0 auto 1.5rem;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .result-table th,
+    .result-table td {
+      padding: 0.6rem 1rem;
+      border-bottom: 1px solid #e4e7eb;
+    }
+    .result-table th {
+      color: #52606d;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .time-note {
+      color: #52606d;
+      font-size: 0.85rem;
+      margin: -0.8rem 0 1.5rem;
+    }
+    .notice {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 1rem;
+      font-weight: 700;
+      color: #1e40af;
+    }
     nav.pager {
       display: flex;
       justify-content: space-between;
@@ -112,6 +229,7 @@
 </head>
 <body>
   <div class="container">
+    <div id="lesson-page">
     <p class="crumb"><a href="../htmlcss30.html">プログラミング入門30日</a> の Day 25</p>
 
     <header>
@@ -131,6 +249,28 @@
       <p>print を使って、自分の名前と今日の日付を表示してみましょう。</p>
     </section>
 
+    <section class="quiz">
+      <h2>✅ 理解度チェック</h2>
+      <p class="quiz-lead">学籍番号と氏名を入力してクイズに正解すると、確認コード付きの提出用画面が表示されます。スクリーンショットを撮って Teams の提出欄にアップロードしてください。</p>
+
+      <div class="error" id="error-box"></div>
+
+      <label for="student-id">学籍番号</label>
+      <input type="text" id="student-id" autocomplete="off" placeholder="例: 26123456">
+
+      <label for="student-name">氏名(フルネーム)</label>
+      <input type="text" id="student-name" autocomplete="off" placeholder="例: 名城 太郎">
+
+      <div class="question" id="q1">
+        <p>Q. JupyterLabでセルを実行するキー操作はどれでしょうか?</p>
+        <label class="choice"><input type="radio" name="q1" value="a">Shift+Enter</label>
+        <label class="choice"><input type="radio" name="q1" value="b">Ctrl+P</label>
+        <label class="choice"><input type="radio" name="q1" value="c">F12</label>
+      </div>
+
+      <button type="button" id="submit-btn" onclick="submitQuiz()">提出する</button>
+    </section>
+
     <nav class="pager">
       <a href="day24.html">← Day 24 演習:ミニアプリ</a>
       <span class="spacer"></span>
@@ -138,6 +278,102 @@
       <span class="spacer"></span>
       <a href="day26.html">Day 26 変数と計算 →</a>
     </nav>
+    </div>
+
+    <div id="result">
+      <h2>正解です!Day 25 の学習を確認しました</h2>
+      <table class="result-table">
+        <tr><th>問題番号</th><td>プログラミング入門30日 Day 25</td></tr>
+        <tr><th>学籍番号</th><td id="result-id"></td></tr>
+        <tr><th>氏名</th><td id="result-name"></td></tr>
+        <tr><th>提出時間</th><td id="result-time"></td></tr>
+        <tr><th>確認コード</th><td id="result-code"></td></tr>
+      </table>
+      <p class="time-note">提出時間はサーバー時刻に基づきます。</p>
+      <p class="notice">この画面のスクリーンショットを撮り、Teams の提出欄にアップロードしてください。</p>
+    </div>
   </div>
+
+  <script src="../../code.js"></script>
+  <script>
+    var ANSWER = "a";
+    var PAGE_ID = "htmlcss30-day25";
+
+    function getChecked(name) {
+      var checked = document.querySelector('input[name="' + name + '"]:checked');
+      return checked ? checked.value : null;
+    }
+
+    function showError(message) {
+      var box = document.getElementById("error-box");
+      box.textContent = message;
+      box.style.display = "block";
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function hideError() {
+      document.getElementById("error-box").style.display = "none";
+    }
+
+    function resetQuiz() {
+      var radios = document.querySelectorAll('input[type="radio"]');
+      for (var i = 0; i < radios.length; i++) {
+        radios[i].checked = false;
+      }
+    }
+
+    function setSubmitting(busy) {
+      var btn = document.getElementById("submit-btn");
+      btn.disabled = busy;
+      btn.textContent = busy ? "提出処理中…" : "提出する";
+    }
+
+    async function submitQuiz() {
+      hideError();
+
+      var id = document.getElementById("student-id").value.trim();
+      var name = document.getElementById("student-name").value.trim();
+
+      if (!id || !name) {
+        showError("学籍番号と氏名を入力してください。");
+        return;
+      }
+
+      var q1 = getChecked("q1");
+      if (!q1) {
+        showError("クイズに回答してください。");
+        return;
+      }
+
+      if (q1 !== ANSWER) {
+        resetQuiz();
+        showError("不正解です。上の解説を読み直して、もう一度チャレンジしてください。");
+        return;
+      }
+
+      if (!window.crypto || !crypto.subtle) {
+        showError("このページは https:// で開く必要があります。URLを確認してください。");
+        return;
+      }
+
+      setSubmitting(true);
+      var timeText = await fetchServerTime();
+      if (!timeText) {
+        setSubmitting(false);
+        showError("時刻サーバーに接続できませんでした。通信環境を確認して、もう一度「提出する」を押してください。");
+        return;
+      }
+
+      var code = await computeCode(PAGE_ID, id, name, timeText);
+
+      document.getElementById("result-id").textContent = id;
+      document.getElementById("result-name").textContent = name;
+      document.getElementById("result-time").textContent = timeText;
+      document.getElementById("result-code").textContent = code;
+      document.getElementById("lesson-page").style.display = "none";
+      document.getElementById("result").style.display = "block";
+      window.scrollTo(0, 0);
+    }
+  </script>
 </body>
 </html>

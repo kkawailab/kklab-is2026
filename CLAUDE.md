@@ -29,7 +29,8 @@ The core mechanism spans three files and both sides must stay in sync:
 Consequences for changes:
 
 - Any change to `computeCode`, `fieldNormalize`, `codeKey`, or the time-string format (`formatJst`) changes the codes and invalidates verification of already-submitted screenshots. Don't touch these casually.
-- The `pageId` passed to `computeCode` must match between an attendance page (`PAGE_ID` constant, e.g. `"attendance01"`) and the corresponding `<option>` value in `verify.html`. A new attendance page needs its own `PAGE_ID` and corresponding verify support, plus a link from `index.html`. `PAGE_ID` is independent of the file path — moving/renaming a page file does not change its codes, but changing `PAGE_ID` does.
+- The lesson pages `tutorials/htmlcss30/day01–30.html` embed the same quiz + confirmation-code mechanism with `PAGE_ID` `"htmlcss30-day01"`…`"htmlcss30-day30"`, loading `code.js` via `../../code.js`; `verify.html` lists them in a second `<optgroup>`.
+- The `pageId` passed to `computeCode` must match between a quiz page (`PAGE_ID` constant, e.g. `"attendance01"`) and the corresponding `<option>` value in `verify.html`. A new attendance page needs its own `PAGE_ID` and corresponding verify support, plus a link from `index.html`. `PAGE_ID` is independent of the file path — moving/renaming a page file does not change its codes, but changing `PAGE_ID` does.
 - New attendance pages should keep the HTTPS-redirect snippet in `<head>` and load `code.js` (from `attendance/`, via `../code.js`).
 
 ## Layout
