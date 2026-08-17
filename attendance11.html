@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>出席確認⑪ AIと社会・仕事のクイズ | NCU IS2026 / 情報システム論</title>
+  <title>出席確認⑪ AIクイズ:強化学習 | NCU IS2026 / 情報システム論</title>
   <script>
     // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
     if (location.protocol === "http:" && location.hostname !== "localhost") {
@@ -101,6 +101,16 @@
       margin-bottom: 1rem;
       font-weight: 700;
     }
+    .explain {
+      display: none;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
     #result {
       display: none;
       text-align: center;
@@ -153,39 +163,26 @@
 <body>
   <div class="container">
     <div id="form-page">
-      <h1>出席確認⑪ AIと社会・仕事のクイズ</h1>
-      <p class="lead">学籍番号と氏名を入力し、3つのクイズすべてに回答して「提出する」を押してください。</p>
+      <h1>出席確認⑪ AIクイズ:強化学習</h1>
+      <p class="lead">学籍番号と氏名を入力し、クイズに回答して「提出する」を押してください。</p>
 
       <div class="error" id="error-box"></div>
+      <div class="explain" id="explain-box"><strong>【解説】</strong>強化学習は、行動の結果として得られる報酬をもとに、試行錯誤しながら最適な行動を学ぶ方法です。囲碁AIなどで使われました。</div>
 
       <fieldset>
         <label for="student-id">学籍番号</label>
         <input type="text" id="student-id" autocomplete="off" placeholder="例: 26123456">
 
-        <label for="student-name">氏名（フルネーム）</label>
+        <label for="student-name">氏名(フルネーム)</label>
         <input type="text" id="student-name" autocomplete="off" placeholder="例: 名城 太郎">
       </fieldset>
 
       <fieldset>
         <div class="question" id="q1">
-          <p>Q1. AIの普及が仕事に与える影響として、適切な説明はどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q1" value="a">一部の作業は自動化される一方で、新しい仕事や役割も生まれる</label>
-          <label class="choice"><input type="radio" name="q1" value="b">すべての仕事が明日なくなる</label>
-          <label class="choice"><input type="radio" name="q1" value="c">仕事には全く影響しない</label>
-        </div>
-
-        <div class="question" id="q2">
-          <p>Q2. 人間とAIの望ましい関係として、適切なものはどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q2" value="a">AIにすべての判断を任せて、人間は何も確認しない</label>
-          <label class="choice"><input type="radio" name="q2" value="b">AIを道具として活用し、最終的な判断は人間が行う</label>
-          <label class="choice"><input type="radio" name="q2" value="c">AIの利用を完全に避ける</label>
-        </div>
-
-        <div class="question" id="q3">
-          <p>Q3. これからの社会で「AIリテラシー」が必要とされる理由として、適切なものはどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q3" value="a">AIの特徴や限界を理解し、適切に活用するため</label>
-          <label class="choice"><input type="radio" name="q3" value="b">AIの資格がないとスマホを使えなくなるため</label>
-          <label class="choice"><input type="radio" name="q3" value="c">AIを崇拝するため</label>
+          <p>Q. 「強化学習」の説明として最も適切なものはどれでしょうか?</p>
+          <label class="choice"><input type="radio" name="q1" value="a">AIが筋力トレーニングを指導する方法</label>
+          <label class="choice"><input type="radio" name="q1" value="b">試行錯誤しながら、報酬が最大になる行動を学ぶ方法</label>
+          <label class="choice"><input type="radio" name="q1" value="c">コンピュータの部品を強化する技術</label>
         </div>
       </fieldset>
 
@@ -193,7 +190,7 @@
     </div>
 
     <div id="result">
-      <h2>全問正解です！出席を確認しました</h2>
+      <h2>正解です!出席を確認しました</h2>
       <table class="result-table">
         <tr><th>問題番号</th><td>出席確認⑪</td></tr>
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
@@ -210,7 +207,7 @@
 
   <script src="code.js"></script>
   <script>
-    var answers = { q1: "a", q2: "b", q3: "a" };
+    var ANSWER = "b";
     var PAGE_ID = "attendance11";
 
     function getChecked(name) {
@@ -223,6 +220,18 @@
       box.textContent = message;
       box.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function hideError() {
+      document.getElementById("error-box").style.display = "none";
+    }
+
+    function showExplain() {
+      document.getElementById("explain-box").style.display = "block";
+    }
+
+    function hideExplain() {
+      document.getElementById("explain-box").style.display = "none";
     }
 
     function resetQuiz() {
@@ -239,6 +248,9 @@
     }
 
     async function submitQuiz() {
+      hideError();
+      hideExplain();
+
       var id = document.getElementById("student-id").value.trim();
       var name = document.getElementById("student-name").value.trim();
 
@@ -248,17 +260,15 @@
       }
 
       var q1 = getChecked("q1");
-      var q2 = getChecked("q2");
-      var q3 = getChecked("q3");
-
-      if (!q1 || !q2 || !q3) {
-        showError("すべてのクイズに回答してください。");
+      if (!q1) {
+        showError("クイズに回答してください。");
         return;
       }
 
-      if (!(q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3)) {
+      if (q1 !== ANSWER) {
         resetQuiz();
-        showError("間違いがあります。再チャレンジしてください。");
+        showExplain();
+        showError("不正解です。下の解説を読んで、もう一度チャレンジしてください。");
         return;
       }
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>出席確認⑧ AIの歴史クイズ | NCU IS2026 / 情報システム論</title>
+  <title>出席確認⑧ AIクイズ:ハルシネーション | NCU IS2026 / 情報システム論</title>
   <script>
     // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
     if (location.protocol === "http:" && location.hostname !== "localhost") {
@@ -101,6 +101,16 @@
       margin-bottom: 1rem;
       font-weight: 700;
     }
+    .explain {
+      display: none;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
     #result {
       display: none;
       text-align: center;
@@ -153,39 +163,26 @@
 <body>
   <div class="container">
     <div id="form-page">
-      <h1>出席確認⑧ AIの歴史クイズ</h1>
-      <p class="lead">学籍番号と氏名を入力し、3つのクイズすべてに回答して「提出する」を押してください。</p>
+      <h1>出席確認⑧ AIクイズ:ハルシネーション</h1>
+      <p class="lead">学籍番号と氏名を入力し、クイズに回答して「提出する」を押してください。</p>
 
       <div class="error" id="error-box"></div>
+      <div class="explain" id="explain-box"><strong>【解説】</strong>ハルシネーションとは、AIが事実と異なる内容をもっともらしく答えてしまう現象です。AIの回答は必ず確認する習慣をつけましょう。</div>
 
       <fieldset>
         <label for="student-id">学籍番号</label>
         <input type="text" id="student-id" autocomplete="off" placeholder="例: 26123456">
 
-        <label for="student-name">氏名（フルネーム）</label>
+        <label for="student-name">氏名(フルネーム)</label>
         <input type="text" id="student-name" autocomplete="off" placeholder="例: 名城 太郎">
       </fieldset>
 
       <fieldset>
         <div class="question" id="q1">
-          <p>Q1. 機械が知的かどうかを、人間との対話によって判定する有名なテストはどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q1" value="a">チューリングテスト</label>
-          <label class="choice"><input type="radio" name="q1" value="b">ロールシャッハテスト</label>
-          <label class="choice"><input type="radio" name="q1" value="c">クラッシュテスト</label>
-        </div>
-
-        <div class="question" id="q2">
-          <p>Q2. AI研究の歩みについて、正しい説明はどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q2" value="a">2020年に世界で初めて始まった</label>
-          <label class="choice"><input type="radio" name="q2" value="b">ブーム（流行）と冬の時代を繰り返しながら発展してきた</label>
-          <label class="choice"><input type="radio" name="q2" value="c">一度も注目されたことがない</label>
-        </div>
-
-        <div class="question" id="q3">
-          <p>Q3. 2010年代にAIが大きく進歩したきっかけとなった技術はどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q3" value="a">そろばんの普及</label>
-          <label class="choice"><input type="radio" name="q3" value="b">白黒テレビの発明</label>
-          <label class="choice"><input type="radio" name="q3" value="c">ディープラーニングの発展</label>
+          <p>Q. 生成AIの「ハルシネーション」の説明として最も適切なものはどれでしょうか?</p>
+          <label class="choice"><input type="radio" name="q1" value="a">AIが高速に計算を行う機能</label>
+          <label class="choice"><input type="radio" name="q1" value="b">AIが事実と異なる内容をもっともらしく答えてしまう現象</label>
+          <label class="choice"><input type="radio" name="q1" value="c">AIが自動的に音楽を作る機能</label>
         </div>
       </fieldset>
 
@@ -193,7 +190,7 @@
     </div>
 
     <div id="result">
-      <h2>全問正解です！出席を確認しました</h2>
+      <h2>正解です!出席を確認しました</h2>
       <table class="result-table">
         <tr><th>問題番号</th><td>出席確認⑧</td></tr>
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
@@ -210,7 +207,7 @@
 
   <script src="code.js"></script>
   <script>
-    var answers = { q1: "a", q2: "b", q3: "c" };
+    var ANSWER = "b";
     var PAGE_ID = "attendance08";
 
     function getChecked(name) {
@@ -223,6 +220,18 @@
       box.textContent = message;
       box.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function hideError() {
+      document.getElementById("error-box").style.display = "none";
+    }
+
+    function showExplain() {
+      document.getElementById("explain-box").style.display = "block";
+    }
+
+    function hideExplain() {
+      document.getElementById("explain-box").style.display = "none";
     }
 
     function resetQuiz() {
@@ -239,6 +248,9 @@
     }
 
     async function submitQuiz() {
+      hideError();
+      hideExplain();
+
       var id = document.getElementById("student-id").value.trim();
       var name = document.getElementById("student-name").value.trim();
 
@@ -248,17 +260,15 @@
       }
 
       var q1 = getChecked("q1");
-      var q2 = getChecked("q2");
-      var q3 = getChecked("q3");
-
-      if (!q1 || !q2 || !q3) {
-        showError("すべてのクイズに回答してください。");
+      if (!q1) {
+        showError("クイズに回答してください。");
         return;
       }
 
-      if (!(q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3)) {
+      if (q1 !== ANSWER) {
         resetQuiz();
-        showError("間違いがあります。再チャレンジしてください。");
+        showExplain();
+        showError("不正解です。下の解説を読んで、もう一度チャレンジしてください。");
         return;
       }
 

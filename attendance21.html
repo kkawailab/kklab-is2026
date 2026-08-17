@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>出席確認③ AIクイズ:機械学習 | NCU IS2026 / 情報システム論</title>
+  <title>出席確認㉑ AIクイズ:AIのバイアス | NCU IS2026 / 情報システム論</title>
   <script>
     // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
     if (location.protocol === "http:" && location.hostname !== "localhost") {
@@ -163,11 +163,11 @@
 <body>
   <div class="container">
     <div id="form-page">
-      <h1>出席確認③ AIクイズ:機械学習</h1>
+      <h1>出席確認㉑ AIクイズ:AIのバイアス</h1>
       <p class="lead">学籍番号と氏名を入力し、クイズに回答して「提出する」を押してください。</p>
 
       <div class="error" id="error-box"></div>
-      <div class="explain" id="explain-box"><strong>【解説】</strong>機械学習では、人間がルールをすべて書くのではなく、コンピュータがデータからパターンやルールを自動的に学びます。</div>
+      <div class="explain" id="explain-box"><strong>【解説】</strong>AIのバイアスとは、学習データの偏りなどが原因で、AIの判断が特定の傾向に偏ってしまうことです。採用や融資などの場面で問題になります。</div>
 
       <fieldset>
         <label for="student-id">学籍番号</label>
@@ -179,10 +179,10 @@
 
       <fieldset>
         <div class="question" id="q1">
-          <p>Q. 「機械学習」の説明として最も適切なものはどれでしょうか?</p>
-          <label class="choice"><input type="radio" name="q1" value="a">人間がすべてのルールを1つずつプログラムする方法</label>
-          <label class="choice"><input type="radio" name="q1" value="b">機械の組み立て方を学ぶ学問</label>
-          <label class="choice"><input type="radio" name="q1" value="c">コンピュータがデータからパターンやルールを自動的に学ぶ方法</label>
+          <p>Q. AIの「バイアス」の説明として最も適切なものはどれでしょうか?</p>
+          <label class="choice"><input type="radio" name="q1" value="a">AIの計算を速くする部品</label>
+          <label class="choice"><input type="radio" name="q1" value="b">学習データの偏りなどにより、AIの判断が偏ってしまうこと</label>
+          <label class="choice"><input type="radio" name="q1" value="c">AIの画面の色合いを調整する機能</label>
         </div>
       </fieldset>
 
@@ -192,7 +192,7 @@
     <div id="result">
       <h2>正解です!出席を確認しました</h2>
       <table class="result-table">
-        <tr><th>問題番号</th><td>出席確認③</td></tr>
+        <tr><th>問題番号</th><td>出席確認㉑</td></tr>
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
         <tr><th>氏名</th><td id="result-name"></td></tr>
         <tr><th>提出時間</th><td id="result-time"></td></tr>
@@ -207,8 +207,8 @@
 
   <script src="code.js"></script>
   <script>
-    var ANSWER = "c";
-    var PAGE_ID = "attendance03";
+    var ANSWER = "b";
+    var PAGE_ID = "attendance21";
 
     function getChecked(name) {
       var checked = document.querySelector('input[name="' + name + '"]:checked');

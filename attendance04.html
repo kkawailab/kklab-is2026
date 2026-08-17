@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>出席確認④ 生成AIとLLMのクイズ | NCU IS2026 / 情報システム論</title>
+  <title>出席確認④ AIクイズ:ディープラーニング | NCU IS2026 / 情報システム論</title>
   <script>
     // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
     if (location.protocol === "http:" && location.hostname !== "localhost") {
@@ -101,6 +101,16 @@
       margin-bottom: 1rem;
       font-weight: 700;
     }
+    .explain {
+      display: none;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
     #result {
       display: none;
       text-align: center;
@@ -153,39 +163,26 @@
 <body>
   <div class="container">
     <div id="form-page">
-      <h1>出席確認④ 生成AIとLLMのクイズ</h1>
-      <p class="lead">学籍番号と氏名を入力し、3つのクイズすべてに回答して「提出する」を押してください。</p>
+      <h1>出席確認④ AIクイズ:ディープラーニング</h1>
+      <p class="lead">学籍番号と氏名を入力し、クイズに回答して「提出する」を押してください。</p>
 
       <div class="error" id="error-box"></div>
+      <div class="explain" id="explain-box"><strong>【解説】</strong>ディープラーニングは、多層のニューラルネットワークでデータの特徴を段階的に学習する手法で、画像認識や音声認識の精度を大きく向上させました。</div>
 
       <fieldset>
         <label for="student-id">学籍番号</label>
         <input type="text" id="student-id" autocomplete="off" placeholder="例: 26123456">
 
-        <label for="student-name">氏名（フルネーム）</label>
+        <label for="student-name">氏名(フルネーム)</label>
         <input type="text" id="student-name" autocomplete="off" placeholder="例: 名城 太郎">
       </fieldset>
 
       <fieldset>
         <div class="question" id="q1">
-          <p>Q1. ChatGPT や Claude の土台となっている「LLM」は何の略でしょうか？</p>
-          <label class="choice"><input type="radio" name="q1" value="a">Large Language Model（大規模言語モデル）</label>
-          <label class="choice"><input type="radio" name="q1" value="b">Long Life Machine</label>
-          <label class="choice"><input type="radio" name="q1" value="c">Live Learning Method</label>
-        </div>
-
-        <div class="question" id="q2">
-          <p>Q2. LLMは主に何を使って学習しているでしょうか？</p>
-          <label class="choice"><input type="radio" name="q2" value="a">人間の夢の記録</label>
-          <label class="choice"><input type="radio" name="q2" value="b">大量の文章（テキスト）データ</label>
-          <label class="choice"><input type="radio" name="q2" value="c">電話の通話音声だけ</label>
-        </div>
-
-        <div class="question" id="q3">
-          <p>Q3. LLMが文章を作る基本的な仕組みとして、最も近い説明はどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q3" value="a">辞書の文章をそのままコピーして貼り付けている</label>
-          <label class="choice"><input type="radio" name="q3" value="b">次に来る言葉（トークン）を予測しながらつなげている</label>
-          <label class="choice"><input type="radio" name="q3" value="c">その場でインターネットの記事を読み上げている</label>
+          <p>Q. ディープラーニング(深層学習)の説明として最も適切なものはどれでしょうか?</p>
+          <label class="choice"><input type="radio" name="q1" value="a">多層のニューラルネットワークを使ってデータの特徴を学習する手法</label>
+          <label class="choice"><input type="radio" name="q1" value="b">深海を探査するロボットの技術</label>
+          <label class="choice"><input type="radio" name="q1" value="c">睡眠を深くするための健康法</label>
         </div>
       </fieldset>
 
@@ -193,7 +190,7 @@
     </div>
 
     <div id="result">
-      <h2>全問正解です！出席を確認しました</h2>
+      <h2>正解です!出席を確認しました</h2>
       <table class="result-table">
         <tr><th>問題番号</th><td>出席確認④</td></tr>
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
@@ -210,7 +207,7 @@
 
   <script src="code.js"></script>
   <script>
-    var answers = { q1: "a", q2: "b", q3: "b" };
+    var ANSWER = "a";
     var PAGE_ID = "attendance04";
 
     function getChecked(name) {
@@ -223,6 +220,18 @@
       box.textContent = message;
       box.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function hideError() {
+      document.getElementById("error-box").style.display = "none";
+    }
+
+    function showExplain() {
+      document.getElementById("explain-box").style.display = "block";
+    }
+
+    function hideExplain() {
+      document.getElementById("explain-box").style.display = "none";
     }
 
     function resetQuiz() {
@@ -239,6 +248,9 @@
     }
 
     async function submitQuiz() {
+      hideError();
+      hideExplain();
+
       var id = document.getElementById("student-id").value.trim();
       var name = document.getElementById("student-name").value.trim();
 
@@ -248,17 +260,15 @@
       }
 
       var q1 = getChecked("q1");
-      var q2 = getChecked("q2");
-      var q3 = getChecked("q3");
-
-      if (!q1 || !q2 || !q3) {
-        showError("すべてのクイズに回答してください。");
+      if (!q1) {
+        showError("クイズに回答してください。");
         return;
       }
 
-      if (!(q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3)) {
+      if (q1 !== ANSWER) {
         resetQuiz();
-        showError("間違いがあります。再チャレンジしてください。");
+        showExplain();
+        showError("不正解です。下の解説を読んで、もう一度チャレンジしてください。");
         return;
       }
 

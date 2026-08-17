@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>出席確認⑦ データとAIのクイズ | NCU IS2026 / 情報システム論</title>
+  <title>出席確認⑦ AIクイズ:プロンプト | NCU IS2026 / 情報システム論</title>
   <script>
     // 確認コード計算(crypto.subtle)はHTTPSでのみ動作するため強制リダイレクト
     if (location.protocol === "http:" && location.hostname !== "localhost") {
@@ -101,6 +101,16 @@
       margin-bottom: 1rem;
       font-weight: 700;
     }
+    .explain {
+      display: none;
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 0.8rem 1rem;
+      margin-bottom: 1rem;
+      color: #92400e;
+      line-height: 1.6;
+    }
     #result {
       display: none;
       text-align: center;
@@ -153,39 +163,26 @@
 <body>
   <div class="container">
     <div id="form-page">
-      <h1>出席確認⑦ データとAIのクイズ</h1>
-      <p class="lead">学籍番号と氏名を入力し、3つのクイズすべてに回答して「提出する」を押してください。</p>
+      <h1>出席確認⑦ AIクイズ:プロンプト</h1>
+      <p class="lead">学籍番号と氏名を入力し、クイズに回答して「提出する」を押してください。</p>
 
       <div class="error" id="error-box"></div>
+      <div class="explain" id="explain-box"><strong>【解説】</strong>プロンプトとは、生成AIに与える指示や質問の文章のことです。プロンプトの書き方を工夫すると、AIの回答の質が大きく変わります。</div>
 
       <fieldset>
         <label for="student-id">学籍番号</label>
         <input type="text" id="student-id" autocomplete="off" placeholder="例: 26123456">
 
-        <label for="student-name">氏名（フルネーム）</label>
+        <label for="student-name">氏名(フルネーム)</label>
         <input type="text" id="student-name" autocomplete="off" placeholder="例: 名城 太郎">
       </fieldset>
 
       <fieldset>
         <div class="question" id="q1">
-          <p>Q1. AIにとってデータが重要な理由として、適切なものはどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q1" value="a">データがあるとパソコンの動作が軽くなるから</label>
-          <label class="choice"><input type="radio" name="q1" value="b">データからパターンを学ぶことで賢くなるから</label>
-          <label class="choice"><input type="radio" name="q1" value="c">データは単なる飾りだから</label>
-        </div>
-
-        <div class="question" id="q2">
-          <p>Q2. 学習データに「バイアス（偏り）」があると、どうなる可能性があるでしょうか？</p>
-          <label class="choice"><input type="radio" name="q2" value="a">AIの判断も偏ったものになる可能性がある</label>
-          <label class="choice"><input type="radio" name="q2" value="b">AIの処理速度が2倍になる</label>
-          <label class="choice"><input type="radio" name="q2" value="c">何も影響はない</label>
-        </div>
-
-        <div class="question" id="q3">
-          <p>Q3. AIの学習に使うデータについて、正しい説明はどれでしょうか？</p>
-          <label class="choice"><input type="radio" name="q3" value="a">量さえ多ければ質はどうでもよい</label>
-          <label class="choice"><input type="radio" name="q3" value="b">少なければ少ないほど良い</label>
-          <label class="choice"><input type="radio" name="q3" value="c">質と量の両方が大切である</label>
+          <p>Q. 生成AIにおける「プロンプト」とは何でしょうか?</p>
+          <label class="choice"><input type="radio" name="q1" value="a">AIに対する指示や質問の文章</label>
+          <label class="choice"><input type="radio" name="q1" value="b">AIを動かすための電源装置</label>
+          <label class="choice"><input type="radio" name="q1" value="c">画面の明るさを調整する設定</label>
         </div>
       </fieldset>
 
@@ -193,7 +190,7 @@
     </div>
 
     <div id="result">
-      <h2>全問正解です！出席を確認しました</h2>
+      <h2>正解です!出席を確認しました</h2>
       <table class="result-table">
         <tr><th>問題番号</th><td>出席確認⑦</td></tr>
         <tr><th>学籍番号</th><td id="result-id"></td></tr>
@@ -210,7 +207,7 @@
 
   <script src="code.js"></script>
   <script>
-    var answers = { q1: "b", q2: "a", q3: "c" };
+    var ANSWER = "a";
     var PAGE_ID = "attendance07";
 
     function getChecked(name) {
@@ -223,6 +220,18 @@
       box.textContent = message;
       box.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function hideError() {
+      document.getElementById("error-box").style.display = "none";
+    }
+
+    function showExplain() {
+      document.getElementById("explain-box").style.display = "block";
+    }
+
+    function hideExplain() {
+      document.getElementById("explain-box").style.display = "none";
     }
 
     function resetQuiz() {
@@ -239,6 +248,9 @@
     }
 
     async function submitQuiz() {
+      hideError();
+      hideExplain();
+
       var id = document.getElementById("student-id").value.trim();
       var name = document.getElementById("student-name").value.trim();
 
@@ -248,17 +260,15 @@
       }
 
       var q1 = getChecked("q1");
-      var q2 = getChecked("q2");
-      var q3 = getChecked("q3");
-
-      if (!q1 || !q2 || !q3) {
-        showError("すべてのクイズに回答してください。");
+      if (!q1) {
+        showError("クイズに回答してください。");
         return;
       }
 
-      if (!(q1 === answers.q1 && q2 === answers.q2 && q3 === answers.q3)) {
+      if (q1 !== ANSWER) {
         resetQuiz();
-        showError("間違いがあります。再チャレンジしてください。");
+        showExplain();
+        showError("不正解です。下の解説を読んで、もう一度チャレンジしてください。");
         return;
       }
 
