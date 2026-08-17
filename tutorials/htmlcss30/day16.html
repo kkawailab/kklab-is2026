@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -262,6 +273,49 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>完成したら友だちや家族に見てもらい、感想をもとに1か所改良してみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;自己紹介&lt;/title&gt;
+  &lt;style&gt;
+    body {
+      font-family: sans-serif;
+      background: #f5f6f8;
+      margin: 0;
+      padding: 1rem;
+    }
+    .card {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 1px solid #cbd2d9;
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    h1 { color: #2563eb; }
+    img { max-width: 100%; border-radius: 8px; }
+  &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class=&quot;card&quot;&gt;
+    &lt;h1&gt;山田 花子&lt;/h1&gt;
+    &lt;p&gt;情報システム論を勉強している1年生です。&lt;/p&gt;
+    &lt;img src=&quot;photo.jpg&quot; alt=&quot;お気に入りの風景&quot;&gt;
+    &lt;h2&gt;好きなもの&lt;/h2&gt;
+    &lt;ul&gt;
+      &lt;li&gt;コーヒー&lt;/li&gt;
+      &lt;li&gt;写真&lt;/li&gt;
+      &lt;li&gt;音楽&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>一例です。5つの要件(見出しと段落・画像・リスト・カード風デザイン・viewport)がそろっていれば、デザインは自由に工夫してください。</p>
+      </details>
     </section>
 
     <section class="quiz">

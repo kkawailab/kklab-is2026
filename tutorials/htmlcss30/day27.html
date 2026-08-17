@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -255,6 +266,14 @@ for i in range(1, 6):
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>1から100までの合計を for と range で計算してみましょう。JavaScriptのDay 20と同じ問題を、Pythonで解く形です。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>total = 0
+for i in range(1, 101):
+    total = total + i
+print(total)   # 5050</code></pre>
+      <p>range(1, 101) は1から100まで(101は含まない)です。JavaScript版(Day 20)と見比べると、書き方の違いがよくわかります。</p>
+      </details>
     </section>
 
     <section class="quiz">

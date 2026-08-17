@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -247,6 +258,12 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>自分で用意した画像(またはフリー素材)をページに表示し、width の値を変えて大きさの変化を確認しましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;img src=&quot;photo.jpg&quot; alt=&quot;旅行で撮った海の写真&quot; width=&quot;300&quot;&gt;
+&lt;img src=&quot;photo.jpg&quot; alt=&quot;旅行で撮った海の写真&quot; width=&quot;150&quot;&gt;</code></pre>
+      <p>同じ画像でも width の値で表示サイズが変わります。画像ファイルはHTMLファイルと同じフォルダに置きましょう。</p>
+      </details>
     </section>
 
     <section class="quiz">

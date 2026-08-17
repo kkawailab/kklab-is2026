@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -257,6 +268,21 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>Day 1 のファイルに lang="ja" とコメントを追加し、title を書き換えてブラウザのタブの表示が変わることを確認しましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;title&gt;私のはじめてのページ&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- あいさつの段落 --&gt;
+  &lt;p&gt;こんにちは、HTML!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p>title を書き換えると、ブラウザのタブの表示が変わります。コメントは画面に表示されません。</p>
+      </details>
     </section>
 
     <section class="quiz">

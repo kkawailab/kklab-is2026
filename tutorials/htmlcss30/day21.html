@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -251,6 +262,16 @@ console.log(greet(&quot;太郎&quot;));</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>2つの数を受け取って平均を返す関数 average(a, b) を作り、いくつかの組み合わせで試してみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>function average(a, b) {
+  return (a + b) / 2;
+}
+
+console.log(average(70, 80));   // 75
+console.log(average(90, 65));   // 77.5</code></pre>
+      <p>引数を2つ受け取り、計算結果を return で返します。呼び出すたびに違う値で使い回せるのが関数の便利なところです。</p>
+      </details>
     </section>
 
     <section class="quiz">

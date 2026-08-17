@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -252,6 +263,22 @@ document.getElementById(&quot;btn&quot;).addEventListener(&quot;click&quot;, fun
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>結果の種類を増やしたり、CSSで結果の文字を大きく目立たせたりして、自分らしいおみくじに仕上げましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>const results = [&quot;大吉&quot;, &quot;中吉&quot;, &quot;小吉&quot;, &quot;吉&quot;, &quot;末吉&quot;];
+
+document.getElementById(&quot;btn&quot;).addEventListener(&quot;click&quot;, function () {
+  const i = Math.floor(Math.random() * results.length);
+  document.getElementById(&quot;message&quot;).textContent = results[i];
+});</code></pre>
+      <pre class="code"><code>#message {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #b91c1c;
+  text-align: center;
+}</code></pre>
+      <p>results.length を使っているので、配列に結果を追加するだけで種類を増やせます。CSSで結果の文字を大きく目立たせました。</p>
+      </details>
     </section>
 
     <section class="quiz">

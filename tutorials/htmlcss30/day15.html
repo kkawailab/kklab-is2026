@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -256,6 +267,15 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>ブラウザの幅を縮めたり広げたりして、レイアウトが切り替わることを確認しましょう。開発者ツールのスマホ表示モードも便利です。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>@media (min-width: 640px) {
+  .row {
+    flex-direction: row;
+  }
+}</code></pre>
+      <p>幅639px以下では縦積み、640px以上で横並びになれば成功です。開発者ツール(F12)のデバイスツールバー(スマホのアイコン)を使うと、画面幅を数値で指定しながら確認できます。</p>
+      </details>
     </section>
 
     <section class="quiz">

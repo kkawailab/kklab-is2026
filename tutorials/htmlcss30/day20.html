@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -248,6 +259,15 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>1から10までの合計を計算するループを書いてみましょう。ヒント: 合計を入れる変数を let sum = 0; のように用意します。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>let sum = 0;
+for (let i = 1; i &lt;= 10; i++) {
+  sum = sum + i;
+}
+console.log(sum);   // 55</code></pre>
+      <p>ループの外で合計用の変数 sum を用意し、繰り返しのたびに i を足し込むのがポイントです。</p>
+      </details>
     </section>
 
     <section class="quiz">

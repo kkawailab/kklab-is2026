@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -255,6 +266,20 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>type="date" や type="range" など、type の値をいろいろ変えて表示がどう変わるか確かめましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;form&gt;
+  &lt;label for=&quot;birthday&quot;&gt;誕生日&lt;/label&gt;
+  &lt;input type=&quot;date&quot; id=&quot;birthday&quot;&gt;
+
+  &lt;label for=&quot;level&quot;&gt;やる気(0〜100)&lt;/label&gt;
+  &lt;input type=&quot;range&quot; id=&quot;level&quot; min=&quot;0&quot; max=&quot;100&quot;&gt;
+
+  &lt;label for=&quot;email&quot;&gt;メールアドレス&lt;/label&gt;
+  &lt;input type=&quot;email&quot; id=&quot;email&quot; placeholder=&quot;taro@example.com&quot;&gt;
+&lt;/form&gt;</code></pre>
+      <p>date はカレンダー、range はスライダーになります。ほかにも number・time・checkbox などがあります。</p>
+      </details>
     </section>
 
     <section class="quiz">

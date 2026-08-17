@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -253,6 +264,14 @@ for f in fruits:
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>都道府県名をキー、県庁所在地を値にした辞書を3件作り、for でまとめて表示しましょう。ヒント: for key in d: の形が使えます。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>capitals = {&quot;愛知県&quot;: &quot;名古屋市&quot;, &quot;大阪府&quot;: &quot;大阪市&quot;, &quot;北海道&quot;: &quot;札幌市&quot;}
+
+for pref in capitals:
+    print(pref, &quot;の県庁所在地は&quot;, capitals[pref])</code></pre>
+      <p>辞書を for で回すとキー(都道府県名)が取り出せるので、capitals[pref] で対応する値を表示します。</p>
+      </details>
     </section>
 
     <section class="quiz">

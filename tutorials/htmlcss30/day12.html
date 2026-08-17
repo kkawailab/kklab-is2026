@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -254,6 +265,25 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>div タグに class="card" を付けて、カードの中に見出しと段落を入れてみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;style&gt;
+  body {
+    background: #f5f6f8;
+  }
+  .card {
+    background: #ffffff;
+    border: 1px solid #cbd2d9;
+    border-radius: 12px;
+    padding: 1rem;
+  }
+&lt;/style&gt;
+
+&lt;div class=&quot;card&quot;&gt;
+  &lt;h2&gt;お知らせ&lt;/h2&gt;
+  &lt;p&gt;カードの中に見出しと段落を入れました。&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </details>
     </section>
 
     <section class="quiz">

@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -252,6 +263,17 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>hello.html と profile.html の2つのファイルを作り、お互いに行き来できるようにリンクを張りましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;!-- hello.html --&gt;
+&lt;p&gt;こんにちは、HTML!&lt;/p&gt;
+&lt;a href=&quot;profile.html&quot;&gt;自己紹介ページへ&lt;/a&gt;
+
+&lt;!-- profile.html --&gt;
+&lt;h1&gt;自己紹介&lt;/h1&gt;
+&lt;a href=&quot;hello.html&quot;&gt;hello.html に戻る&lt;/a&gt;</code></pre>
+      <p>2つのファイルを同じフォルダに置けば、ファイル名だけの相対パスでお互いにリンクできます。</p>
+      </details>
     </section>
 
     <section class="quiz">

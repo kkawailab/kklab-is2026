@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -254,6 +265,18 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>3つ以上の段落を作り、一部の段落だけ class を付けて色を変えてみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;style&gt;
+  .important { color: red; }
+&lt;/style&gt;
+
+&lt;p&gt;ふつうの段落です。&lt;/p&gt;
+&lt;p class=&quot;important&quot;&gt;この段落は大事なので赤色です。&lt;/p&gt;
+&lt;p&gt;これもふつうの段落です。&lt;/p&gt;
+&lt;p class=&quot;important&quot;&gt;締め切りは金曜日!ここも赤色です。&lt;/p&gt;</code></pre>
+      <p>同じ class を複数の要素に付けられること、class のない段落には適用されないことが確認できれば正解です。</p>
+      </details>
     </section>
 
     <section class="quiz">

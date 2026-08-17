@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -251,6 +262,20 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>padding と margin の値をいろいろ変えて、どこの余白が変わるのかを開発者ツールで確かめましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>.box-a {
+  padding: 40px;   /* 内側が広がる: 枠線と文字の間が空く */
+  margin: 10px;
+  border: 2px solid #2563eb;
+}
+.box-b {
+  padding: 10px;
+  margin: 40px;    /* 外側が広がる: となりの要素から離れる */
+  border: 2px solid #ea580c;
+}</code></pre>
+      <p>padding を増やすと枠線の内側、margin を増やすと要素の外側の間隔が変わることを開発者ツールで確認できれば正解です。</p>
+      </details>
     </section>
 
     <section class="quiz">

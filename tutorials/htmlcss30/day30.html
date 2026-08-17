@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -255,6 +266,18 @@ plt.show()</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>30日間おつかれさまでした!自分で集めたデータ(例: 1週間の睡眠時間)をグラフにして、学習のまとめとしましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>import matplotlib.pyplot as plt
+
+days = [&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;]
+sleep = [6.5, 7.0, 5.5, 6.0, 7.5, 8.5, 8.0]
+
+plt.bar(days, sleep)
+plt.title(&quot;Sleep Hours&quot;)
+plt.show()</code></pre>
+      <p>1週間の睡眠時間を棒グラフ(plt.bar)にした例です。plt.plot に変えれば折れ線グラフになります。データを自分のものに置き換えれば完成です。30日間おつかれさまでした!</p>
+      </details>
     </section>
 
     <section class="quiz">

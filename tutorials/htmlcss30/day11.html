@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -253,6 +264,19 @@ body {
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>「カラーピッカー」で検索してカラーコードを調べ、見出しと本文の色の組み合わせを自分で作ってみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>h1 {
+  color: #1d4ed8;      /* 濃い青 */
+}
+p {
+  color: #374151;      /* 濃いグレー(真っ黒より読みやすい) */
+}
+body {
+  background: #f9fafb; /* ごく薄いグレー */
+}</code></pre>
+      <p>一例です。背景色と文字色のコントラストが十分にあって読みやすいか、という視点でも確認してみましょう。</p>
+      </details>
     </section>
 
     <section class="quiz">

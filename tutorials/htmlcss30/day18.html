@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -251,6 +262,15 @@ console.log(&quot;来年は&quot; + age + &quot;歳です&quot;);</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>自分の名前と年齢に書き換えて、10年後の年齢を計算して表示してみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>const name = &quot;山田 花子&quot;;
+let age = 19;
+
+console.log(name + &quot;さんは&quot; + age + &quot;歳です&quot;);
+console.log(&quot;10年後は&quot; + (age + 10) + &quot;歳です&quot;);</code></pre>
+      <p>(age + 10) のようにかっこを付けると、文字列とつなぐ前に計算が行われます。</p>
+      </details>
     </section>
 
     <section class="quiz">

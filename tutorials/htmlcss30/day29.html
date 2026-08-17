@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -252,6 +263,20 @@ print(math.sqrt(2))   # 平方根</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>3つの数の最大値を返す関数を自分で作り、Python組み込みの max 関数の結果と比べてみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>def my_max(a, b, c):
+    m = a
+    if b &gt; m:
+        m = b
+    if c &gt; m:
+        m = c
+    return m
+
+print(my_max(3, 8, 5))   # 8
+print(max(3, 8, 5))      # 8(組み込み関数でも同じ結果)</code></pre>
+      <p>自作の関数と組み込みの max が同じ結果になれば成功です。よく使う処理は、このように言語側があらかじめ用意してくれています。</p>
+      </details>
     </section>
 
     <section class="quiz">

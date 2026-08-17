@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -253,6 +264,17 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>h1・h2・p を使って自分の自己紹介を書いてみましょう。見出しの階層(h1の下にh2)が正しいかを意識してください。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;h1&gt;山田 花子の自己紹介&lt;/h1&gt;
+
+&lt;h2&gt;出身&lt;/h2&gt;
+&lt;p&gt;愛知県名古屋市です。&lt;/p&gt;
+
+&lt;h2&gt;趣味&lt;/h2&gt;
+&lt;p&gt;読書と写真です。休日は図書館によく行きます。&lt;/p&gt;</code></pre>
+      <p>ページ全体の題名が h1、その中の話題ごとの見出しが h2、本文が p という階層になっていれば正解です。</p>
+      </details>
     </section>
 
     <section class="quiz">

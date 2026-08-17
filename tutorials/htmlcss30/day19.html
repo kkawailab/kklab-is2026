@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -254,6 +265,19 @@ if (score &gt;= 80) {
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>score の値を変えて実行し、3パターンすべてのメッセージが表示されることを確認しましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>const score = 85;  // 85 → よくできました! / 70 → 合格です / 40 → 再チャレンジ!
+
+if (score &gt;= 80) {
+  console.log(&quot;よくできました!&quot;);
+} else if (score &gt;= 60) {
+  console.log(&quot;合格です&quot;);
+} else {
+  console.log(&quot;再チャレンジ!&quot;);
+}</code></pre>
+      <p>score を書き換えて3回実行し、それぞれのメッセージが出れば成功です。境目の 80・60・59 で試すと理解が深まります。</p>
+      </details>
     </section>
 
     <section class="quiz">

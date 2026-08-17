@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -247,6 +258,12 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>print を使って、自分の名前と今日の日付を表示してみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>print(&quot;山田 花子&quot;)
+print(&quot;2026年8月17日&quot;)</code></pre>
+      <p>発展: from datetime import date と書いてから print(date.today()) とすると、今日の日付を自動で取得できます(import は Day 29 で学びます)。</p>
+      </details>
     </section>
 
     <section class="quiz">

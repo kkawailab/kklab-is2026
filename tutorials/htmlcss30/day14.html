@@ -105,6 +105,17 @@
       color: #2563eb;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #2563eb;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #2563eb;
@@ -258,6 +269,24 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>カードの数を増やしたり、.row に justify-content: center; を追加したりして、並び方の変化を観察しましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;style&gt;
+  .row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;   /* 中央寄せ */
+  }
+&lt;/style&gt;
+
+&lt;div class=&quot;row&quot;&gt;
+  &lt;div class=&quot;card&quot;&gt;カード1&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;カード2&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;カード3&lt;/div&gt;
+  &lt;div class=&quot;card&quot;&gt;カード4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>flex: 1 の指定を外すと、justify-content: center による中央寄せの効果が見やすくなります。</p>
+      </details>
     </section>
 
     <section class="quiz">

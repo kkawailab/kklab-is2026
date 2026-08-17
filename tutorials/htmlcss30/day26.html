@@ -105,6 +105,17 @@
       color: #16a34a;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #16a34a;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #16a34a;
@@ -249,6 +260,15 @@ print(&quot;10年後は&quot;, age + 10, &quot;歳です&quot;)</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>身長(m)と体重(kg)の変数を作り、BMI(体重 ÷ 身長の2乗)を計算して表示しましょう。ヒント: weight / (height ** 2)</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>height = 1.65   # 身長(m)
+weight = 55     # 体重(kg)
+
+bmi = weight / (height ** 2)
+print(&quot;BMIは&quot;, bmi)</code></pre>
+      <p>この例では約20.2と表示されます。** が累乗(2乗)、/ が割り算です。</p>
+      </details>
     </section>
 
     <section class="quiz">

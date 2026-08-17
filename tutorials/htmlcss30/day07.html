@@ -105,6 +105,17 @@
       color: #ea580c;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ea580c;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ea580c;
@@ -256,6 +267,27 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>自分の1週間の時間割(2〜3行でOK)を表にしてみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>&lt;table border=&quot;1&quot;&gt;
+  &lt;tr&gt;
+    &lt;th&gt;曜日&lt;/th&gt;
+    &lt;th&gt;1限&lt;/th&gt;
+    &lt;th&gt;2限&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;月&lt;/td&gt;
+    &lt;td&gt;情報システム論&lt;/td&gt;
+    &lt;td&gt;英語&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;火&lt;/td&gt;
+    &lt;td&gt;経済学&lt;/td&gt;
+    &lt;td&gt;統計学&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+      <p>1行目を th(見出しセル)、2行目以降を td(データセル)にするのがポイントです。</p>
+      </details>
     </section>
 
     <section class="quiz">

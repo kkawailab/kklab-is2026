@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -251,6 +262,15 @@ console.log(student.name);     // 名城 太郎</code></pre>
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>好きな食べ物の配列を作り、for (const f of fruits) { ... } の形のループで全部表示してみましょう。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>const foods = [&quot;寿司&quot;, &quot;カレー&quot;, &quot;ラーメン&quot;];
+
+for (const food of foods) {
+  console.log(food + &quot;が好きです&quot;);
+}</code></pre>
+      <p>for...of を使うと、添字(0, 1, 2…)を意識せずに配列の全要素を順番に取り出せます。</p>
+      </details>
     </section>
 
     <section class="quiz">

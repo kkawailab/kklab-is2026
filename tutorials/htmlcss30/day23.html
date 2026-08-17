@@ -105,6 +105,17 @@
       color: #ca8a04;
       margin-bottom: 0.6rem;
     }
+    details.answer {
+      margin-top: 1rem;
+      border-top: 1px dashed #cbd2d9;
+      padding-top: 1rem;
+    }
+    details.answer summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #ca8a04;
+      margin-bottom: 1rem;
+    }
     .quiz h2 {
       font-size: 1rem;
       color: #ca8a04;
@@ -254,6 +265,17 @@
     <section class="exercise">
       <h2>✍️ 今日の練習</h2>
       <p>押すたびにカウントが1ずつ増えるボタンに改造してみましょう。ヒント: let count = 0; を script の先頭に用意します。</p>
+      <details class="answer">
+        <summary>模範解答を見る</summary>
+      <pre class="code"><code>let count = 0;
+
+const btn = document.getElementById(&quot;btn&quot;);
+btn.addEventListener(&quot;click&quot;, function () {
+  count = count + 1;
+  document.getElementById(&quot;message&quot;).textContent = count + &quot;回押されました&quot;;
+});</code></pre>
+      <p>カウント用の変数 count をイベントの外で宣言しておき、クリックのたびに1増やして表示し直します。</p>
+      </details>
     </section>
 
     <section class="quiz">
