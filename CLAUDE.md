@@ -35,7 +35,7 @@ Consequences for changes:
 
 ## Layout
 
-- Attendance pages live in `attendance/`, tutorial/self-study pages (e.g. `htmlcss30.html`) in `tutorials/`. `index.html`, `verify.html`, and the shared `code.js` stay at the repo root. Pages in subdirectories reference root files with `../` relative paths.
+- Attendance pages live in `attendance/` (`attendance/index.html` is the 問題集 index linked from the top page), tutorial/self-study pages (e.g. `htmlcss30.html`) in `tutorials/`. `index.html`, `verify.html`, and the shared `code.js` stay at the repo root. Pages in subdirectories reference root files with `../` relative paths.
 
 ## Conventions
 
